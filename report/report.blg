@@ -1,12 +1,12 @@
 This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: report-template.aux
+The top-level auxiliary file: report.aux
 The style file: acl.bst
-Database file #1: sample.bib
+Database file #1: report.bib
 Warning--can't use both volume and number fields in bishop2006pattern
 You've used 1 entry,
             2490 wiz_defined-function locations,
-            557 strings with 4603 characters,
+            556 strings with 4579 characters,
 and the built_in function-call counts, 356 in all, are:
 = -- 31
 > -- 13
