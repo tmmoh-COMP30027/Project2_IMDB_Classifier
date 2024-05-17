@@ -143,6 +143,11 @@ INPUT ./res/class-dist.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT ./res/svm-lc.png
+INPUT ./res/svm-lc.png
+INPUT res/svm-lc.png
+INPUT ./res/svm-lc.png
+INPUT ./res/svm-lc.png
 INPUT ./res/class-dist.png
 INPUT ./res/class-dist.png
 INPUT res/class-dist.png

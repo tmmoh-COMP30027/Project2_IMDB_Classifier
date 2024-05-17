@@ -111,7 +111,7 @@ The best hyperparameters were found to be:
 \textbf{Kernel: } RBF
 
 \noindent
-These hyperparameters resulted in an accuracy of 73.4\% and a cross-validation score of 73.7\% and the below:
+These hyperparameters resulted in an accuracy of 74.3\% and a cross-validation score of 74.2\% and the below:
 
 \begin{table}[!ht]
     \begin{center}
@@ -121,9 +121,9 @@ These hyperparameters resulted in an accuracy of 73.4\% and a cross-validation s
             \hline\hline
             0 & 0.00 & 0.00 & 0.00 & 5 \\
             1 & 0.00 & 0.00 & 0.00 & 48 \\
-            2 & 0.74 & 0.93 & 0.83 & 377 \\
-            3 & 0.70 & 0.54 & 0.61 & 152 \\
-            4 & 0.69 & 0.47 & 0.56 & 19\\
+            2 & 0.75 & 0.93 & 0.83 & 377 \\
+            3 & 0.72 & 0.57 & 0.63 & 152 \\
+            4 & 0.75 & 0.47 & 0.58 & 19\\
                 \hline
         \end{tabular}
 
@@ -138,8 +138,8 @@ These hyperparameters resulted in an accuracy of 73.4\% and a cross-validation s
             \hline
              & Prec. & Recall & F1-Score \\
             \hline\hline
-            Macro Avg & 0.43 & 0.39 & 0.40 \\
-            Weighted Avg & 0.67 & 0.73 & 0.69 \\
+            Macro Avg & 0.44 & 0.39 & 0.41 \\
+            Weighted Avg & 0.68 & 0.74 & 0.70 \\
                 \hline
         \end{tabular}
 
@@ -148,6 +148,12 @@ These hyperparameters resulted in an accuracy of 73.4\% and a cross-validation s
 
     \end{center}
 \end{table}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width = 0.48\textwidth]{res/svm-lc.png}
+\caption{\textit{Learning Curve for the Best SVM Model}}
+	\label{fig:svm-lc}
+\end{figure}
 \noindent
 The best feature set found was:
 \begin{itemize}
