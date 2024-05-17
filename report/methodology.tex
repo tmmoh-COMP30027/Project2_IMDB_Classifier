@@ -44,4 +44,14 @@ For each of the models, the below steps were followed to find the best model:
 \end{enumerate}
 
 \subsubsection{Ensemble Model}
+We construct an Ensemble model using the stacking method. This method works in the following way:
+
+\begin{enumerate}
+    \item This model is akin to several models stacked on top of each other. This helps us leverage the results of different models.
+    \item First we use base classifiers to predict on the dataset.\\
+    These classifiers predict on the training portion of the stratified dataset.\\
+    \item The predictions from these models construct new features for the meta classifier which is logistic regression.
+    \item This helps combat over-fitting as there is cross-validation that occurs due to how the stacking works.
+    \item This model combines classifiers with verying performance to give results as good as or better than the best of the base classifiers.
+\end{enumerate}
 
