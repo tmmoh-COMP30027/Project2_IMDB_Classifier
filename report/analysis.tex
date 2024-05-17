@@ -1,0 +1,9 @@
+
+\subsection{Overview of Base Models}
+None of the 3 base models were able to correctly classify movies with rating of 0, and most failed to classify movies with rating of 1. The biggest issue is the distribution of the classes in the training data, since these classes only make up less than 9\% of the training data. It is also a lot easier to determine if a movie does really well (rating of 4), as opposed to a movie doing terribly from the provided feature set. Looking at the distribution of all numerical attributes for example, they are all very heavily skewed. Since most if not all of the features are not negatively correlated with the class, the models will have an easier time determining a higher class, whereas with lower ratings they are likely to group it with the most common class. This can be empirically noticed in all the models when looking at the statistic in predicting a rating of 2; the models had high recall, they were able to correctly classify most instances of the rating, but they also had significantly lower precision, indicating that the class was predicted when it was incorrect. This contrasts other class predictions, where the precision was higher than the recall.
+
+\subsection{Suppport Vector Machine}
+
+
+However, it seems that with feature selection, the model does not change much. During the feature selection process the only feature that was removed was \texttt{average\_degree\_centrality}, and so it makes sense that that it performs relatively similary. 
+

@@ -1,0 +1,47 @@
+
+\subsection{Understanding the Data}
+\subsubsection{Class Distribution} 
+By counting the frequency of each class and understanding the distribution of the classes in the training data, we can gain valuable insights when designing and evaluating models.
+
+\subsection{Data Preprocessing}
+
+\subsubsection{Normalisation}
+For most of the numeric values in the dataset, the important information is how it compares to other values, rather than the actual value itself. These values should be normalised. Since some models prefer 0 mean data, such as logistic regression and support vector machines, standardisation will be the normalisation method of choice. However, attributes like \texttt{title\_year} or \texttt{average\_degree\_centrality} are more valuable as the value itself, and so these will not be standardised.
+
+\subsubsection{Removing Highly Correlated Attributes}
+There are a few reasons to remove all but one attribute from a set of highly correlated attributes. Not only does removing the attributes decrease dimensionality and makes the models faster, but having multicollinearity among independent variables can result in less reliable statistical inferences. By removing them, we should be able to increase the models' ability to generalise and not overfit to the training data.
+
+
+\subsubsection{Dropping Unuseful Values}
+Considering that the data is likely to be biased towards certain regions of the world, there will likely be certain attributes the exhibit an overwhelming majority of one variation, with many other unique but less prevalent values. These attributes would not be very useful to the data, and the best way to approach them is dropping them from the dataset. This also has the additional advantage of decreasing the dimensionality of the data, and hence increasing the speed of the models.
+
+\subsubsection{One Hot Encoding}
+
+\subsection{Baseline Models}
+To provide a baseline for benchmarking, we can develop a few simple models. The simplest that can be developed is just a model that guesses the most common class. Following this, a One Rule model could be developed on the categorical attributes, such as film categories.
+
+\subsection{Model Design}
+\subsubsection{Base Models}
+
+Three base models were picked, these were:
+
+\begin{itemize}
+    \item Support Vector Machine
+    \item Logistic Regression
+    \item Random Forest
+\end{itemize}
+
+For each of the models, the below steps were followed to find the best model:
+
+\begin{enumerate}
+    \item The training data was split into a training set and validation set.
+    \item For each hyperparameter model, a few reasonable options were selected.
+    \item Iterating over all combinations of hyperparameters, the combination that resulted in the highest accuracy over the training set was picked.
+    \item The model is evaluated over the validation set.
+    \item Using sequential forward selection and the best hyperparameters for the model, the best combination of features is selected for the training of the model. 
+    \item Using the best hyperparamters and best features, the model is evaluated against 
+
+\end{enumerate}
+
+\subsubsection{Ensemble Model}
+
