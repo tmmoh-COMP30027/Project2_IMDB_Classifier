@@ -45,9 +45,9 @@ Considering that the data is likely to be biased towards certain regions of the 
 To provide a baseline for benchmarking, we can develop a few simple models. The simplest that can be developed is just a model that guesses the most common class. Following this, a One Rule model could be developed on the categorical attributes, such as film categories.
 
 \subsection{Model Design}
-\subsubsection{Models}
+\subsubsection{Base Models}
 
-Three models were picked, these were:
+Three base models were picked, these were:
 
 \begin{itemize}
     \item Support Vector Machine
@@ -66,6 +66,8 @@ For each of the models, the below steps were followed to find the best model:
     \item Using the best hyperparamters and best features, the model is evaluated against 
 
 \end{enumerate}
+
+\subsubsection{Ensemble Model}
 
 
 
@@ -98,6 +100,7 @@ Similarly, a large majority of movies are either R or PG-13 rated, and so the ra
 \subsubsection{Names}
 Through filtering out all of the text attributes, we are also filtering out the names of actors and the movie director. Whilst the quality of film can be correlated to its director, and people often enjoy certain movies with certain actors more, the names alone are not enough to generalise the IMDB rating of a movie. This could instead result in the model memorising which directors and actors are better rated, and since there's a limited number of names, would result in overfitting to the training data.
 
+
 \subsection{Model 1: Support Vector Machine}
 The best hyperparameters were found to be:
 
@@ -108,18 +111,18 @@ The best hyperparameters were found to be:
 \textbf{Kernel: } RBF
 
 \noindent
-These hyperparameters resulted in an accuracy of 70.0\% and the below:
+These hyperparameters resulted in an accuracy of 73.4\% and a cross-validation score of 73.7\% and the below:
 
 \begin{table}[!ht]
     \begin{center}
         \begin{tabular}{c|c|c|c|c}			
             \hline
-            Ratin & Prec. & Recall & F1-Score & Support \\
+            Class & Prec. & Recall & F1-Score & Support \\
             \hline\hline
             0 & 0.00 & 0.00 & 0.00 & 5 \\
             1 & 0.00 & 0.00 & 0.00 & 48 \\
-            2 & 0.70 & 0.94 & 0.81 & 377 \\
-            3 & 0.67 & 0.37 & 0.48 & 152 \\
+            2 & 0.74 & 0.93 & 0.83 & 377 \\
+            3 & 0.70 & 0.54 & 0.61 & 152 \\
             4 & 0.69 & 0.47 & 0.56 & 19\\
                 \hline
         \end{tabular}
@@ -135,8 +138,8 @@ These hyperparameters resulted in an accuracy of 70.0\% and the below:
             \hline
              & Prec. & Recall & F1-Score \\
             \hline\hline
-            Macro Avg & 0.41 & 0.36 & 0.37 \\
-            Weighted Avg & 0.68 & 0.70 & 0.64 \\
+            Macro Avg & 0.43 & 0.39 & 0.40 \\
+            Weighted Avg & 0.67 & 0.73 & 0.69 \\
                 \hline
         \end{tabular}
 
@@ -157,37 +160,38 @@ The best feature set found was:
     \item Face Number in Poster
     \item Title Year
     \item Movie Facebook Likes
+    \item Genres
 \end{itemize}
 \noindent
-These features resulted in an accuracy of 70.0\% and the below:
+These features resulted in an accuracy of 73.4\%, a cross validation score of 73.4\%, and the below:
 
 \begin{table}[!ht]
     \begin{center}
         \begin{tabular}{c|c|c|c|c}			
             \hline
-            Ratin & Prec. & Recall & F1-Score & Support \\
+            Class & Prec. & Recall & F1-Score & Support \\
             \hline\hline
             0 & 0.00 & 0.00 & 0.00 & 5 \\
             1 & 0.00 & 0.00 & 0.00 & 48 \\
-            2 & 0.70 & 0.94 & 0.81 & 377 \\
-            3 & 0.67 & 0.37 & 0.48 & 152 \\
+            2 & 0.70 & 0.93 & 0.83 & 377 \\
+            3 & 0.70 & 0.54 & 0.61 & 152 \\
             4 & 0.69 & 0.47 & 0.56 & 19\\
                 \hline
         \end{tabular}
 
         \caption{\textit{Classification Report of the Best SVM Model without Feature Selection}}
         \label{svm-ft-report}
-
     \end{center}
 \end{table}
+
 \begin{table}[!ht]
     \begin{center}
         \begin{tabular}{c||c|c|c}			
             \hline
              & Prec. & Recall & F1-Score \\
             \hline\hline
-            Macro Avg & 0.41 & 0.36 & 0.37 \\
-            Weighted Avg & 0.68 & 0.70 & 0.64 \\
+            Macro Avg & 0.43 & 0.39 & 0.40 \\
+            Weighted Avg & 0.67 & 0.73 & 0.69 \\
                 \hline
         \end{tabular}
 
@@ -196,6 +200,14 @@ These features resulted in an accuracy of 70.0\% and the below:
 
     \end{center}
 \end{table}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width = 0.48\textwidth]{res/class-dist.png}
+	\caption{Learning }
+	\label{fig:svm-lc-ft}
+\end{figure}
+
 
 \subsection{Model 2: Logistic Regression}
 The best hyperparameters were found to be:
@@ -215,7 +227,7 @@ These hyperparameters resulted in an accuracy of 65.2\% and the below:
     \begin{center}
         \begin{tabular}{c|c|c|c|c}			
             \hline
-            Ratin & Prec. & Recall & F1-Score & Support \\
+            Class & Prec. & Recall & F1-Score & Support \\
             \hline\hline
             0 & 0.00 & 0.00 & 0.00 & 5 \\
             1 & 0.00 & 0.00 & 0.00 & 48 \\
@@ -263,7 +275,7 @@ These features resulted in an accuracy of 66.8\% and the below:
     \begin{center}
         \begin{tabular}{c|c|c|c|c}			
             \hline
-            Ratin & Prec. & Recall & F1-Score & Support \\
+            Class & Prec. & Recall & F1-Score & Support \\
             \hline\hline
             0 & 0.00 & 0.00 & 0.00 & 5 \\
             1 & 0.00 & 0.00 & 0.00 & 48 \\
@@ -295,6 +307,7 @@ These features resulted in an accuracy of 66.8\% and the below:
     \end{center}
 \end{table}
 
+
 \subsection{Model 3: Random Forest}
 The best hyperparameters were found to be:
 
@@ -309,7 +322,7 @@ These hyperparameters resulted in an accuracy of 71.2\% and the below:
     \begin{center}
         \begin{tabular}{c|c|c|c|c}			
             \hline
-            Ratin & Prec. & Recall & F1-Score & Support \\
+            Class & Prec. & Recall & F1-Score & Support \\
             \hline\hline
             0 & 0.00 & 0.00 & 0.00 & 5 \\
             1 & 0.50 & 0.04 & 0.08 & 48 \\
@@ -353,7 +366,7 @@ These features resulted in an accuracy of 60.2\% and the below:
     \begin{center}
         \begin{tabular}{c|c|c|c|c}			
             \hline
-            Ratin & Prec. & Recall & F1-Score & Support \\
+            Class & Prec. & Recall & F1-Score & Support \\
             \hline\hline
             0 & 0.00 & 0.00 & 0.00 & 5 \\
             1 & 0.09 & 0.04 & 0.06 & 48 \\
@@ -384,20 +397,22 @@ These features resulted in an accuracy of 60.2\% and the below:
 
     \end{center}
 \end{table}
+
 \section{Discussion \& Critical Analysis}
+
+\subsection{Overview of Base Models}
+None of the 3 base models were able to correctly classify movies with rating of 0, and most failed to classify movies with rating of 1. The biggest issue is the distribution of the classes in the training data, since these classes only make up less than 9\% of the training data. It is also a lot easier to determine if a movie does really well (rating of 4), as opposed to a movie doing terribly from the provided feature set. Looking at the distribution of all numerical attributes for example, they are all very heavily skewed. Since most if not all of the features are not negatively correlated with the class, the models will have an easier time determining a higher class, whereas with lower ratings they are likely to group it with the most common class. This can be empirically noticed in all the models when looking at the statistic in predicting a rating of 2; the models had high recall, they were able to correctly classify most instances of the rating, but they also had significantly lower precision, indicating that the class was predicted when it was incorrect. This contrasts other class predictions, where the precision was higher than the recall.
+
 \subsection{Suppport Vector Machine}
+
+
+However, it seems that with feature selection, the model does not change much. During the feature selection process the only feature that was removed was \texttt{average\_degree\_centrality}, and so it makes sense that that it performs relatively similary. 
 
 \section{Conclusion}
 
 
 \bibliographystyle{acl}
 \bibliography{report}
-
-This is a report template, suitable for \LaTeX. Don't use fonts smaller than this one (11pt). Don't include a title page,
-table of contents, abstract, or other similar front matter.
-
-\textbf{Please don't include your name and/or student ID in the title or header; your report should be anonymised for the reviewing process.}.
-
 \ \\ Use \textbf{bold} for \textbf{emphasis}, but use sparingly. 
 
 Short quotations ``\textit{are included in the main text, in normal paragraph style, between double quotes and italicized}'' All quotes should be properly referenced. Note that the citation style is defined in the accompanying
